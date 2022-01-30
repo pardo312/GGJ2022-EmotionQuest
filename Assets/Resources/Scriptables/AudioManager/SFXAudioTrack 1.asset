@@ -10,13 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1245907513, guid: bd5362145e148894fb6c4b23d41ba644, type: 3}
-  m_Name: SFXAudioTrack
+  m_Name: SFXAudioTrack 1
   m_EditorClassIdentifier: 
   audioSource: {fileID: 0}
-  audioObjects:
-  - key: SFX_BTN
-    audioClip: {fileID: 8300000, guid: 08ac0f998567c6140b7b8c1853d8c85c, type: 3}
-  - key: SFX_SCORE
-    audioClip: {fileID: 8300000, guid: 905598f0e24a8364891e9d9a061ff464, type: 3}
-  - key: SFX_FAIL
-    audioClip: {fileID: 8300000, guid: 1b89e91977be73e49b4adc07110fde6c, type: 3}
+  audioObjects: []

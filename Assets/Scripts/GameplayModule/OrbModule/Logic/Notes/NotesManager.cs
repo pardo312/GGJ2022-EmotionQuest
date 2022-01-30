@@ -19,6 +19,10 @@ namespace EmotionQuest.GameplayModule.OrbModule
             if(isPlaying)
                 transform.position -= new Vector3(trackSpeed * 100 *Time.deltaTime,0,0);
         }
+        public void EndGame()
+        {
+            isPlaying = false;
+        }
 
     }
 }

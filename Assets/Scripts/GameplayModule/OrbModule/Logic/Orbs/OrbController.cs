@@ -9,6 +9,8 @@ namespace EmotionQuest.GameplayModule.OrbModule
         #region ----Fields----
         [SerializeField] private Image orb;
         private OrbData orbData;
+        public bool isActive;
+
         public Action scoreNote;
         public Action failNote;
         #endregion ----Fields----
@@ -32,19 +34,28 @@ namespace EmotionQuest.GameplayModule.OrbModule
 
             orb.color = new Color(orbColor.r, orbColor.g, orbColor.b, orbColor.a + percentage);
 
-                orb.transform.localScale += Vector3.one * Math.Abs(percentage) * scaleGrowthRatio;
+            orb.transform.localScale += Vector3.one * Math.Abs(percentage) * scaleGrowthRatio;
         }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.TryGetComponent<NoteController>(out NoteController noteController))
             {
-                //if (other.GetComponent<NoteController>().typeOfOrb.typeOfOrb != this.typeOfOrb.typeOfOrb)
+
                 if (noteController.orbData.typeOfOrb == this.orbData.typeOfOrb
                     && noteController.orbData.sizeOfOrb == this.orbData.sizeOfOrb)
-                    scoreNote?.Invoke();
+                {
+                    if (isActive)
+                    {
+                        Debug.Log("Score in");
+                        scoreNote?.Invoke();
+                    }
+                }
                 else
+                {
+                    Debug.Log("fail in");
                     failNote?.Invoke();
+                }
 
                 other.gameObject.SetActive(false);
             }

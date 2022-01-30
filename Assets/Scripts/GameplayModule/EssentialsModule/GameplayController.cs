@@ -1,3 +1,4 @@
+using EmotionQuest.GameplayModule.HealthModule;
 using EmotionQuest.GameplayModule.OrbModule;
 using EmotionQuest.InputModule;
 using Jiufen.Audio;
@@ -15,6 +16,8 @@ namespace EmotionQuest.GameplayModule
         public OrbsManager orbsManager;
         public NotesManager notesManager;
         public CounterController counterController;
+        public HealthController healthController;
+        public EndGameController endGameController;
         #endregion ----Fields----
 
         #region ----Methods----
@@ -22,21 +25,43 @@ namespace EmotionQuest.GameplayModule
         {
             counterController.StartCounter(() =>
             {
-
-                AudioJobOptions audioJobExtras = new AudioJobOptions(fadeIn:new AudioFadeInfo(true, 1));
-                AudioManager.PlayAudio("OST_TEEN", audioJobExtras);
-
+                orbsManager.Init();
+                healthController.Init();
                 notesManager.Init();
+
                 //Init controllers
                 inputController.growHappiness += orbsManager.GrowHapinness;
                 inputController.growSadness += orbsManager.GrowSaddness;
+
+                orbsManager.failNote += healthController.DecreaseResource;
+                healthController.playerDead += Death;
+
+                AudioJobOptions audioJobExtras = new AudioJobOptions(fadeIn: new AudioFadeInfo(true, 1));
+                AudioManager.PlayAudio("OST_TEEN", audioJobExtras);
             });
+        }
+
+        public void Death()
+        {
+            Debug.Log("FINISH DEAD");
+            DesuscribeEvents();
+            notesManager.EndGame();
+            endGameController.EndGame(false);
+            AudioManager.StopAudio("OST_TEEN");
         }
 
         public void OnDestroy()
         {
+            DesuscribeEvents();
+        }
+
+        private void DesuscribeEvents()
+        {
             inputController.growHappiness -= orbsManager.GrowHapinness;
             inputController.growSadness -= orbsManager.GrowSaddness;
+
+            orbsManager.failNote -= healthController.DecreaseResource;
+            healthController.playerDead -= Death;
         }
         #endregion ----Methods----
     }

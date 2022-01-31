@@ -45,7 +45,7 @@ namespace EmotionQuest.GameplayModule.OrbModule
             if (other.TryGetComponent<NoteController>(out NoteController noteController))
             {
 
-                if (isActive)
+                if (isActive )
                 {
                     if (noteController.orbData.typeOfOrb == this.orbData.typeOfOrb
                         && noteController.orbData.sizeOfOrb == this.orbData.sizeOfOrb)

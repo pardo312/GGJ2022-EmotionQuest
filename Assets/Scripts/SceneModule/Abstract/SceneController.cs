@@ -12,15 +12,10 @@ namespace EmotionQuest.SceneFlowModule
         protected virtual void Awake()
         {
             instance = this;
-            if (testMode)
-            {
-                Init();
-            }
         }
 
         #endregion Singleton
 
-        public bool testMode;
         #region Methods
 
         public abstract void Init(Action<bool> _callback = null);

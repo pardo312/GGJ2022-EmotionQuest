@@ -48,9 +48,9 @@ namespace EmotionQuest.GameplayModule
         public void Death()
         {
             DesuscribeEvents();
+            AudioManager.StopAudio(songToPlay);
             notesManager.EndGame();
             endGameController.EndGame(false);
-            AudioManager.StopAudio(songToPlay);
         }
 
         public void EndLevel()
@@ -69,12 +69,14 @@ namespace EmotionQuest.GameplayModule
 
         public void ExitGameplay()
         {
+            AudioManager.StopAudio(songToPlay);
             SceneFlowManager.instance.LoadScene("Home");
         }
 
         [ContextMenu("reset")]
         public void RestartGameplay()
         {
+            AudioManager.StopAudio(songToPlay);
             SceneFlowManager.instance.LoadScene(SceneManager.GetActiveScene().name);
         }
 

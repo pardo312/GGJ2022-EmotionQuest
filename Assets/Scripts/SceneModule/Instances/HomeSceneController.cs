@@ -4,13 +4,32 @@ using UnityEngine;
 
 namespace EmotionQuest.SceneFlowModule
 {
-public class HomeSceneController : SceneController
+    public class HomeSceneController : SceneController
     {
+        #region ----Fields----
+        public GameObject levelsPanel;
+        public GameObject[] levelsButtons;
+        #endregion ----Fields----
+
         #region ----Methods----
         public override void Init(Action<bool> _callback = null)
         {
-            PlayerPrefs.GetInt("unlockedScenes");
+            int levelesUnlocked = PlayerPrefs.GetInt("unlockedScenes", 1);
+            for (int i = 0; i < levelesUnlocked; i++)
+            {
+                levelsButtons[i].SetActive(true);
+            }
             StartCoroutine(Wait(_callback));
+        }
+        public void PlayButton()
+        {
+            levelsPanel.SetActive(true);
+        }
+
+        public void GoToScene(string name)
+        {
+            Debug.Log("lol");
+            SceneFlowManager.instance.LoadScene(name);
         }
 
         IEnumerator Wait(Action<bool> callback)

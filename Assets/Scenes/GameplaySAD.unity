@@ -29882,7 +29882,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bc04b51d5f2a234f91bf25f7df2fd91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testMode: 1
+  testMode: 0
   gameplayController: {fileID: 1572468424}
 --- !u!1 &1072405605
 GameObject:

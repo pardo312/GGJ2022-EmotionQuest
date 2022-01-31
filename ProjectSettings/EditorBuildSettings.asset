@@ -12,6 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Home.unity
     guid: fa7d519c842d5e140be7fb529b018bbc
   - enabled: 1
-    path: Assets/Scenes/GameplayTEST.unity
-    guid: 9f38736778203074fa0ea176dba3f0ca
+    path: Assets/Scenes/GameplayHAPPY.unity
+    guid: 11b18e748a6c422448469233f8fef255
+  - enabled: 1
+    path: Assets/Scenes/GameplayNOS.unity
+    guid: 9172a33bba1a5e44ba934ea84ae042dc
+  - enabled: 1
+    path: Assets/Scenes/GameplaySAD.unity
+    guid: bd30e63c2df86dc4c85cb3e3538df1e8
   m_configObjects: {}

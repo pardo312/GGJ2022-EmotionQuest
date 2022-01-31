@@ -10,6 +10,8 @@ namespace EmotionQuest.GameplayModule.HealthModule
         [SerializeField] private Image imageHealth;
         private float currentDamage;
 
+        private const float MAX_LIFE = 1;
+
         public Action playerDead;
 
         public void Init()
@@ -19,9 +21,9 @@ namespace EmotionQuest.GameplayModule.HealthModule
 
         public void DecreaseResource()
         {
-            if (currentDamage < 1)
+            if (currentDamage < MAX_LIFE)
             {
-                AudioJobOptions audioJobExtras = new AudioJobOptions(volumen: 0.5f);
+                AudioJobOptions audioJobExtras = new AudioJobOptions(volumen: .5f);
                 AudioManager.PlayAudio("SFX_FAIL", audioJobExtras);
                 currentDamage += .1f;
             }

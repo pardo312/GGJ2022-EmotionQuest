@@ -21,14 +21,22 @@ namespace EmotionQuest.GameplayModule.OrbModule
         #region ----Methods----
         public void Init()
         {
+            sadnessOrb.Init(TypeOfOrb.SAD);
             sadnessOrb.scoreNote += () => scoreNote?.Invoke();
             sadnessOrb.failNote += () => failNote?.Invoke();
+
+            happinessOrb.Init(TypeOfOrb.HAPPY);
+            happinessOrb.scoreNote += () => scoreNote?.Invoke();
+            happinessOrb.failNote += () => failNote?.Invoke();
         }
 
         private void OnDestroy()
         {
             sadnessOrb.scoreNote -= () => scoreNote?.Invoke();
             sadnessOrb.failNote -= () => failNote?.Invoke();
+
+            happinessOrb.scoreNote += () => scoreNote?.Invoke();
+            happinessOrb.failNote += () => failNote?.Invoke();
         }
 
         public void GrowSaddness()
@@ -67,17 +75,12 @@ namespace EmotionQuest.GameplayModule.OrbModule
 
         public void CheckIfActive()
         {
-            if (currentState == 0)
-            {
-                sadnessOrb.isActive = false;
-                happinessOrb.isActive = false;
-            }
-            else if (currentState < 0)
+            if (currentState < 0)
             {
                 sadnessOrb.isActive = true;
                 happinessOrb.isActive = false;
             }
-            else
+            else if (currentState > 0)
             {
                 happinessOrb.isActive = true;
                 sadnessOrb.isActive = false;

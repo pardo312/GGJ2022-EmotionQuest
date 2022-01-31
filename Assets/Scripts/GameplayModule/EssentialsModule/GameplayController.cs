@@ -1,10 +1,12 @@
 using EmotionQuest.GameplayModule.HealthModule;
 using EmotionQuest.GameplayModule.OrbModule;
 using EmotionQuest.InputModule;
+using EmotionQuest.SceneFlowModule;
 using Jiufen.Audio;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace EmotionQuest.GameplayModule
 {
@@ -18,6 +20,8 @@ namespace EmotionQuest.GameplayModule
         public CounterController counterController;
         public HealthController healthController;
         public EndGameController endGameController;
+
+        public string songToPlay;
         #endregion ----Fields----
 
         #region ----Methods----
@@ -37,17 +41,28 @@ namespace EmotionQuest.GameplayModule
                 healthController.playerDead += Death;
 
                 AudioJobOptions audioJobExtras = new AudioJobOptions(fadeIn: new AudioFadeInfo(true, 1));
-                AudioManager.PlayAudio("OST_TEEN", audioJobExtras);
+                AudioManager.PlayAudio(songToPlay, audioJobExtras);
             });
         }
 
         public void Death()
         {
-            Debug.Log("FINISH DEAD");
             DesuscribeEvents();
             notesManager.EndGame();
             endGameController.EndGame(false);
-            AudioManager.StopAudio("OST_TEEN");
+            AudioManager.StopAudio(songToPlay);
+        }
+
+
+        public void ExitGameplay()
+        {
+            SceneFlowManager.instance.LoadScene("Home");
+        }
+
+        [ContextMenu("reset")]
+        public void RestartGameplay()
+        {
+            SceneFlowManager.instance.LoadScene(SceneManager.GetActiveScene().name);
         }
 
         public void OnDestroy()

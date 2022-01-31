@@ -6,6 +6,6 @@ namespace EmotionQuest.GameplayModule.OrbModule
     public enum TypeOfOrb
     {
         SAD = 0,
-        RED = 1
+        HAPPY = 1
     }
 }

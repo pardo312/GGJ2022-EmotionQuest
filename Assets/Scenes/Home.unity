@@ -167,7 +167,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fc1268f0296a9d45a9a696a4413ad8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testMode: 0
   levelsPanel: {fileID: 588971511}
   levelsButtons:
   - {fileID: 1185326377}
@@ -572,7 +571,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: GameplayHAPPY
+          m_StringArgument: GameplaySAD
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &847095196
@@ -1137,7 +1136,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: GameplaySAD
+          m_StringArgument: GameplayHAPPY
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1185326380

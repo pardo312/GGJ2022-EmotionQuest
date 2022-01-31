@@ -54,7 +54,7 @@ namespace EmotionQuest.SceneFlowModule
             if (loadSuccess)
             {
                 SceneManager.UnloadSceneAsync(nameOfLoadingScene);
-                previousScene = name;
+                previousScene = nameOfSceneLoaded;
             }
             else
             {

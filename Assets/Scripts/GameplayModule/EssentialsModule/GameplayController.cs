@@ -40,7 +40,7 @@ namespace EmotionQuest.GameplayModule
                 orbsManager.failNote += healthController.DecreaseResource;
                 healthController.playerDead += Death;
 
-                AudioJobOptions audioJobExtras = new AudioJobOptions(fadeIn: new AudioFadeInfo(true, 1));
+                AudioJobOptions audioJobExtras = new AudioJobOptions(fadeIn: new AudioFadeInfo(true, 1),delay:0.7f);
                 AudioManager.PlayAudio(songToPlay, audioJobExtras);
             });
         }
@@ -48,20 +48,35 @@ namespace EmotionQuest.GameplayModule
         public void Death()
         {
             DesuscribeEvents();
+            AudioManager.StopAudio(songToPlay);
             notesManager.EndGame();
             endGameController.EndGame(false);
-            AudioManager.StopAudio(songToPlay);
         }
 
+        public void EndLevel()
+        {
+            endGameController.EndGame(true);
+        }
+
+        public void BackFromSuccesfulLevel()
+        {
+            int currentLevelUnlocked = PlayerPrefs.GetInt("unlockedScenes", 1);
+            ++currentLevelUnlocked;
+            if (currentLevelUnlocked <= 3)
+                PlayerPrefs.SetInt("unlockedScenes", currentLevelUnlocked);
+            ExitGameplay();
+        }
 
         public void ExitGameplay()
         {
+            AudioManager.StopAudio(songToPlay);
             SceneFlowManager.instance.LoadScene("Home");
         }
 
         [ContextMenu("reset")]
         public void RestartGameplay()
         {
+            AudioManager.StopAudio(songToPlay);
             SceneFlowManager.instance.LoadScene(SceneManager.GetActiveScene().name);
         }
 

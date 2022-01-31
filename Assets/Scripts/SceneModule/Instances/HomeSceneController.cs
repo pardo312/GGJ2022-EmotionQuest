@@ -1,18 +1,23 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class HomeSceneController : MonoBehaviour
+namespace EmotionQuest.SceneFlowModule
 {
-    // Start is called before the first frame update
-    void Start()
+public class HomeSceneController : SceneController
     {
-        
-    }
+        #region ----Methods----
+        public override void Init(Action<bool> _callback = null)
+        {
+            PlayerPrefs.GetInt("unlockedScenes");
+            StartCoroutine(Wait(_callback));
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        IEnumerator Wait(Action<bool> callback)
+        {
+            yield return new WaitForSeconds(2);
+            callback?.Invoke(true);
+        }
+        #endregion ----Methods----
     }
 }

@@ -30,6 +30,7 @@ namespace EmotionQuest.SceneFlowModule
         public void Start()
         {
             previousScene = SceneManager.GetActiveScene().name;
+            SceneController.instance.Init();
         }
         [ContextMenu("test")]
         public void Test()

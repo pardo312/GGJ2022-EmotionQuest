@@ -13,12 +13,10 @@ namespace EmotionQuest.GameplayModule
             m_panelEndGame.SetActive(true);
             if (won)
             {
-                Debug.Log("YOU WIN");
                 m_panelWin.ShowPanel();
             }
             else
             {
-                Debug.Log("YOU LOSE");
                 m_panelLose.ShowPanel();
             }
         }

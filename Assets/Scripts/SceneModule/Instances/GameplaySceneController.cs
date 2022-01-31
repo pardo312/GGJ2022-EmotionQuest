@@ -15,13 +15,13 @@ namespace EmotionQuest.SceneFlowModule
         #region ----Methods----
         public override void Init(Action<bool> _callback = null)
         {
-            gameplayController.Init();
             StartCoroutine(Wait(_callback));
         }
 
         IEnumerator Wait(Action<bool> callback)
         {
             yield return new WaitForSeconds(2);
+            gameplayController.Init();
             callback?.Invoke(true);
         }
         #endregion ----Methods----

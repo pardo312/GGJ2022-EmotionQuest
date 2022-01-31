@@ -14,5 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 0}
   audioObjects:
+  - key: OST_CHILD
+    audioClip: {fileID: 8300000, guid: 27c3dd31aad1ae54a927b0855fac309d, type: 3}
   - key: OST_TEEN
     audioClip: {fileID: 8300000, guid: 42758593580d3634389b6b7702a56741, type: 3}
+  - key: OST_ADULT
+    audioClip: {fileID: 8300000, guid: 4137310625f5ed0449ddff71ac7f2c96, type: 3}

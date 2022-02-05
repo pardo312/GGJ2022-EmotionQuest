@@ -1,11 +1,11 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 namespace EmotionQuest.GameplayModule.OrbModule
 {
     public class NoteController : MonoBehaviour
     {
+        [SerializeField] public OrbData orbData;
+
         private void OnBecameInvisible()
         {
             enabled = false;
@@ -15,7 +15,5 @@ namespace EmotionQuest.GameplayModule.OrbModule
         {
             enabled = true;
         }
-
-        [SerializeField] public OrbData orbData;
     }
 }

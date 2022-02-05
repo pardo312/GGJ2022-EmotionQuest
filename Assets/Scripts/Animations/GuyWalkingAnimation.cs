@@ -9,7 +9,7 @@ public class GuyWalkingAnimation : MonoBehaviour
     private float currentTime;
     private bool enableAnim;
 
-    private void Start()
+    public void Init()
     {
         Enable();
     }

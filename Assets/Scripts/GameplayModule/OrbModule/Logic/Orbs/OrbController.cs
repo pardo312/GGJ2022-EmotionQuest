@@ -44,21 +44,20 @@ namespace EmotionQuest.GameplayModule.OrbModule
         {
             if (other.TryGetComponent<NoteController>(out NoteController noteController))
             {
-
-                if (isActive )
+                if (isActive && other.transform.parent.gameObject.activeSelf)
                 {
                     if (noteController.orbData.typeOfOrb == this.orbData.typeOfOrb
                         && noteController.orbData.sizeOfOrb == this.orbData.sizeOfOrb)
                     {
                         scoreNote?.Invoke();
+                        other.transform.parent.gameObject.SetActive(false);
                     }
                     else
                     {
                         failNote?.Invoke();
+                        other.transform.parent.gameObject.SetActive(false);
                     }
                 }
-
-                other.transform.parent.gameObject.SetActive(false);
             }
         }
         #endregion ----Methods----

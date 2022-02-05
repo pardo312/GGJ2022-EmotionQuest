@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -30245,6 +30245,42 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1090599898}
   m_CullTransparentMesh: 1
+--- !u!1 &1091975075
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1091975076}
+  m_Layer: 5
+  m_Name: PositionEnd
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1091975076
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1091975075}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 6.88352, y: 6.88352, z: 6.88352}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1704144400}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 882, y: -403}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1092761125 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1551603207314582304, guid: 2f16dedb579943a4684906275879f786,
@@ -31798,6 +31834,42 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1138566912}
   m_CullTransparentMesh: 1
+--- !u!1 &1140085030
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1140085031}
+  m_Layer: 5
+  m_Name: PositionStart
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1140085031
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1140085030}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 6.88352, y: 6.88352, z: 6.88352}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1704144400}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -888, y: -403}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1145974767
 GameObject:
   m_ObjectHideFlags: 0
@@ -35162,18 +35234,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1267209359}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1267209361 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6468072877226012729, guid: 7b71e092ab0e4e14184edc950ecec5b0,
-    type: 3}
-  m_PrefabInstance: {fileID: 1267209359}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1268900519
 GameObject:
   m_ObjectHideFlags: 0
@@ -41741,6 +41801,7 @@ MonoBehaviour:
   counterController: {fileID: 1572468426}
   healthController: {fileID: 1572468427}
   endGameController: {fileID: 1572468428}
+  guyWalkingAnimation: {fileID: 1957983910}
   songToPlay: OST_TEEN
 --- !u!4 &1572468425
 Transform:
@@ -41783,7 +41844,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efadcfc1c4a4f2a488ac1e137045bdae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  imageHealth: {fileID: 1267209361}
+  imageHealth: {fileID: 1957983912}
 --- !u!114 &1572468428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44958,6 +45019,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1957983909}
+  - {fileID: 1140085031}
+  - {fileID: 1091975076}
   m_Father: {fileID: 896688098}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -51102,7 +51165,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -188, y: -23}
+  m_AnchoredPosition: {x: -290, y: -23}
   m_SizeDelta: {x: 19, y: 36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1957983910
@@ -51112,14 +51175,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1957983908}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7bc3dd1a2d2e8be4bba91ee341412977, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  positionStart: {fileID: 0}
-  positionEnd: {fileID: 0}
-  animDuration: 70
+  positionStart: {fileID: 1140085031}
+  positionEnd: {fileID: 1091975076}
+  animDuration: 74
 --- !u!95 &1957983911
 Animator:
   serializedVersion: 4
@@ -51130,7 +51193,7 @@ Animator:
   m_GameObject: {fileID: 1957983908}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 824dbb8ab003e86449c1fa676e4316cf, type: 2}
+  m_Controller: {fileID: 9100000, guid: caf6d46a0808a304c8a95cbc55666a96, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -51160,7 +51223,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 58463348d0c9f694cbce5d7b88fb2777, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7086cd4f8b0332d4396cecc45ce4d9de, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -52645,7 +52708,7 @@ MonoBehaviour:
       - m_Target: {fileID: 1572468424}
         m_TargetAssemblyTypeName: EmotionQuest.GameplayModule.GameplayController,
           Assembly-CSharp
-        m_MethodName: EndLevel
+        m_MethodName: Win
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

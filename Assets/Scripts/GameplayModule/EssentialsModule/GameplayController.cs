@@ -3,8 +3,6 @@ using EmotionQuest.GameplayModule.OrbModule;
 using EmotionQuest.InputModule;
 using EmotionQuest.SceneFlowModule;
 using Jiufen.Audio;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,7 +10,6 @@ namespace EmotionQuest.GameplayModule
 {
     public class GameplayController : MonoBehaviour
     {
-
         #region ----Fields----
         public InputController inputController;
         public OrbsManager orbsManager;
@@ -20,6 +17,7 @@ namespace EmotionQuest.GameplayModule
         public CounterController counterController;
         public HealthController healthController;
         public EndGameController endGameController;
+        public GuyWalkingAnimation guyWalkingAnimation;
 
         public string songToPlay;
         #endregion ----Fields----
@@ -32,29 +30,39 @@ namespace EmotionQuest.GameplayModule
                 orbsManager.Init();
                 healthController.Init();
                 notesManager.Init();
+                guyWalkingAnimation.Init();
 
                 //Init controllers
                 inputController.growHappiness += orbsManager.GrowHapinness;
                 inputController.growSadness += orbsManager.GrowSaddness;
 
+                orbsManager.scoreNote += healthController.IncreaseResource;
                 orbsManager.failNote += healthController.DecreaseResource;
-                healthController.playerDead += Death;
+                healthController.playerDead += Lose;
 
                 AudioJobOptions audioJobExtras = new AudioJobOptions(fadeIn: new AudioFadeInfo(true, 1),delay:0.7f);
                 AudioManager.PlayAudio(songToPlay, audioJobExtras);
             });
         }
 
-        public void Death()
+        private void EndLevel()
         {
             DesuscribeEvents();
             AudioManager.StopAudio(songToPlay);
             notesManager.EndGame();
+        }
+
+        [ContextMenu("LoseLevel")]
+        public void Lose()
+        {
+            EndLevel();
             endGameController.EndGame(false);
         }
 
-        public void EndLevel()
+        [ContextMenu("WinLevel")]
+        public void Win()
         {
+            EndLevel();
             endGameController.EndGame(true);
         }
 
@@ -90,8 +98,9 @@ namespace EmotionQuest.GameplayModule
             inputController.growHappiness -= orbsManager.GrowHapinness;
             inputController.growSadness -= orbsManager.GrowSaddness;
 
+            orbsManager.scoreNote -= healthController.IncreaseResource;
             orbsManager.failNote -= healthController.DecreaseResource;
-            healthController.playerDead -= Death;
+            healthController.playerDead -= Lose;
         }
         #endregion ----Methods----
     }

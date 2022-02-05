@@ -1,7 +1,6 @@
 using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace EmotionQuest.GameplayModule.OrbModule
 {
@@ -58,11 +57,11 @@ namespace EmotionQuest.GameplayModule.OrbModule
             }
             currentState--;
 
-            CheckIfActive();
-            CheckLabel();
-
             sadnessOrb.ChangeColorAndScaleOfOrb(valueOfGrowth, scaleGrowthRatioToUse);
             happinessOrb.ChangeColorAndScaleOfOrb(-valueOfGrowth, scaleGrowthRatioToUse);
+
+            CheckIfActive();
+            CheckLabel();
         }
 
         public void GrowHapinness()
@@ -75,11 +74,11 @@ namespace EmotionQuest.GameplayModule.OrbModule
                 scaleGrowthRatioToUse *= -1;
             currentState++;
 
-            CheckIfActive();
-            CheckLabel();
-
             happinessOrb.ChangeColorAndScaleOfOrb(valueOfGrowth, scaleGrowthRatioToUse);
             sadnessOrb.ChangeColorAndScaleOfOrb(-valueOfGrowth, scaleGrowthRatioToUse);
+
+            CheckIfActive();
+            CheckLabel();
         }
 
         public void CheckIfActive()

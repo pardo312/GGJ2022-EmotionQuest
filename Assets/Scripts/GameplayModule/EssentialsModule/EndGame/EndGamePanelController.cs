@@ -29,5 +29,6 @@ namespace EmotionQuest.GameplayModule
                 });
         }
 
+        private void OnDestroy() => LeanTween.cancelAll();
     }
 }

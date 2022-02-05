@@ -35,13 +35,21 @@ namespace EmotionQuest.GameplayModule.HealthModule
             UpdateView();
         }
 
+        public void IncreaseResource()
+        {
+            if(currentDamage > 0)
+                currentDamage -= .05f;
+
+            UpdateView();
+        }
+
         private void UpdateView()
         {
             Color healthColor = imageHealth.color;
-            LeanTween.value(imageHealth.color.a, currentDamage, 0.1f)
+            LeanTween.value(imageHealth.color.r, 1 - currentDamage, 0.5f)
                 .setOnUpdate((float value) =>
                 {
-                    imageHealth.color = new Color(healthColor.r, healthColor.g, healthColor.b, value);
+                    imageHealth.color = new Color(value, value, value, 1);
                 });
         }
     }

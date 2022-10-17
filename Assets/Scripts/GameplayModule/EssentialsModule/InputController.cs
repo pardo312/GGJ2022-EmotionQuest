@@ -5,19 +5,18 @@ namespace EmotionQuest.InputModule
 {
     public class InputController : MonoBehaviour
     {
-        #region ----Fields----
         [SerializeField] private KeyCode growHappinessKey;
         [SerializeField] private KeyCode growSadnessKey;
         [SerializeField, Range(.1f, 1f)] private float timeForContinuousInput;
         [SerializeField, Range(.01f, .1f)] private float timeBetweenContinuosInputs;
 
+        [SerializeField] private bool continousInput;
+
         public Action growHappiness;
         public Action growSadness;
 
         private float timer = 0;
-        #endregion ----Fields----
 
-        #region ----Methods----
         void Update()
         {
             if (!CheckInput(growHappinessKey, () => growHappiness?.Invoke()))
@@ -26,7 +25,6 @@ namespace EmotionQuest.InputModule
             CheckInput(growSadnessKey, () => growSadness?.Invoke());
         }
 
-        public bool continousInput;
         private bool CheckInput(KeyCode keycode, Action callback)
         {
             if (Input.GetKeyDown(keycode))
@@ -54,8 +52,8 @@ namespace EmotionQuest.InputModule
                 continousInput = false;
                 timer = 0;
             }
+
             return true;
         }
-        #endregion ----Methods----
     }
 }

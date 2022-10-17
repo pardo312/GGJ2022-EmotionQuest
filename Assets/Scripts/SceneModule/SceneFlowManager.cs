@@ -5,8 +5,9 @@ namespace EmotionQuest.SceneFlowModule
 {
     public class SceneFlowManager : MonoBehaviour
     {
-        #region ----Singleton----
+        [SerializeField] private string nameOfLoadingScene;
         public static SceneFlowManager instance;
+        private string previousScene;
 
         private void Awake()
         {
@@ -19,34 +20,26 @@ namespace EmotionQuest.SceneFlowModule
             instance = this;
             DontDestroyOnLoad(this);
         }
-        #endregion ----Singleton----
 
-        #region ----Fields----
-        [SerializeField] private string nameOfLoadingScene;
-        private string previousScene;
-        #endregion ----Fields----
-
-        #region ----Methods----
         public void Start()
         {
             previousScene = SceneManager.GetActiveScene().name;
             SceneController.instance.Init();
         }
+
         [ContextMenu("test")]
         public void Test()
         {
             LoadScene("Gameplay");
         }
+
         public void LoadScene(string name)
         {
             SceneManager.LoadSceneAsync(nameOfLoadingScene, LoadSceneMode.Additive).completed += (operation) =>
-            {
                 SceneManager.UnloadSceneAsync(previousScene);
-            };
+
             SceneManager.LoadSceneAsync(name, LoadSceneMode.Additive).completed += (operation) =>
-             {
                  SceneController.instance.Init((loadSuccess) => SceneLoaded(loadSuccess, name));
-             };
         }
 
         private void SceneLoaded(bool loadSuccess, string nameOfSceneLoaded)
@@ -65,6 +58,5 @@ namespace EmotionQuest.SceneFlowModule
                  };
             }
         }
-        #endregion ----Methods----
     }
 }

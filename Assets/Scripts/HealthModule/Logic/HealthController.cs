@@ -7,17 +7,16 @@ namespace EmotionQuest.GameplayModule.HealthModule
 {
     public class HealthController : MonoBehaviour
     {
-        [SerializeField] private Image imageHealth;
-        private float currentDamage;
-
         private const float MAX_LIFE = 1;
 
-        public Action playerDead;
+        [SerializeField] private Image imageHealth;
 
-        public void Init()
-        {
+        public event Action playerDead;
+
+        private float currentDamage;
+
+        public void Init() =>
             currentDamage = 0;
-        }
 
         public void DecreaseResource()
         {
@@ -28,16 +27,14 @@ namespace EmotionQuest.GameplayModule.HealthModule
                 currentDamage += .1f;
             }
             else
-            {
                 playerDead?.Invoke();
-            }
 
             UpdateView();
         }
 
         public void IncreaseResource()
         {
-            if(currentDamage > 0)
+            if (currentDamage > 0)
                 currentDamage -= .05f;
 
             UpdateView();
@@ -48,9 +45,7 @@ namespace EmotionQuest.GameplayModule.HealthModule
             Color healthColor = imageHealth.color;
             LeanTween.value(imageHealth.color.r, 1 - currentDamage, 0.5f)
                 .setOnUpdate((float value) =>
-                {
-                    imageHealth.color = new Color(value, value, value, 1);
-                });
+                    imageHealth.color = new Color(value, value, value, 1));
         }
     }
 }

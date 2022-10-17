@@ -6,20 +6,16 @@ namespace EmotionQuest.GameplayModule.OrbModule
 {
     public class OrbController : MonoBehaviour
     {
-        #region ----Fields----
         [SerializeField] private Image orb;
+
         private OrbData orbData;
         public bool isActive;
 
-        public Action scoreNote;
-        public Action failNote;
-        #endregion ----Fields----
+        public event Action scoreNote;
+        public event Action failNote;
 
-        #region ----Methods----
-        public void Init(TypeOfOrb pTypeOfOrb)
-        {
+        public void Init(TypeOfOrb pTypeOfOrb) =>
             orbData = new OrbData() { typeOfOrb = pTypeOfOrb, sizeOfOrb = SizeOfOrb.NEUTRAL };
-        }
 
         public void ChangeColorAndScaleOfOrb(float percentage, float scaleGrowthRatio)
         {
@@ -36,30 +32,22 @@ namespace EmotionQuest.GameplayModule.OrbModule
             }
 
             orb.color = new Color(orbColor.r, orbColor.g, orbColor.b, orbColor.a + percentage);
-
             orb.transform.localScale += Vector3.one * Math.Abs(percentage) * scaleGrowthRatio;
         }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.TryGetComponent<NoteController>(out NoteController noteController))
-            {
-                if (isActive && other.transform.parent.gameObject.activeSelf)
-                {
-                    if (noteController.orbData.typeOfOrb == this.orbData.typeOfOrb
-                        && noteController.orbData.sizeOfOrb == this.orbData.sizeOfOrb)
-                    {
-                        scoreNote?.Invoke();
-                        other.transform.parent.gameObject.SetActive(false);
-                    }
-                    else
-                    {
-                        failNote?.Invoke();
-                        other.transform.parent.gameObject.SetActive(false);
-                    }
-                }
-            }
+            if (!other.TryGetComponent(out NoteController noteController))
+                return;
+
+            if (!isActive || !other.transform.parent.gameObject.activeSelf)
+                return;
+
+            if (noteController.orbData.typeOfOrb == orbData.typeOfOrb && noteController.orbData.sizeOfOrb == orbData.sizeOfOrb)
+                scoreNote?.Invoke();
+            else
+                failNote?.Invoke();
+            other.transform.parent.gameObject.SetActive(false);
         }
-        #endregion ----Methods----
     }
 }

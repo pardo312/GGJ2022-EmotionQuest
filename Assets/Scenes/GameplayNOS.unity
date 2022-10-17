@@ -3775,6 +3775,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
@@ -8278,7 +8279,7 @@ PrefabInstance:
     - target: {fileID: 6468072876857782942, guid: 7b71e092ab0e4e14184edc950ecec5b0,
         type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6468072876857782942, guid: 7b71e092ab0e4e14184edc950ecec5b0,
         type: 3}
@@ -12852,8 +12853,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eba0f5ef6e04ee149938cbac38630296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  growHappinessKey: 97
-  growSadnessKey: 115
+  growHappinessKey: 100
+  growSadnessKey: 97
   timeForContinuousInput: 0.2
   timeBetweenContinuosInputs: 0.05
   continousInput: 0
@@ -18838,7 +18839,7 @@ PrefabInstance:
     - target: {fileID: 1551603207314582307, guid: 2f16dedb579943a4684906275879f786,
         type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1551603207314582307, guid: 2f16dedb579943a4684906275879f786,
         type: 3}

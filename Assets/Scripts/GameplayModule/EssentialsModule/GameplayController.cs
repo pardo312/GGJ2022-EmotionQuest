@@ -10,19 +10,16 @@ namespace EmotionQuest.GameplayModule
 {
     public class GameplayController : MonoBehaviour
     {
-        #region ----Fields----
-        public InputController inputController;
-        public OrbsManager orbsManager;
-        public NotesManager notesManager;
-        public CounterController counterController;
-        public HealthController healthController;
-        public EndGameController endGameController;
-        public GuyWalkingAnimation guyWalkingAnimation;
+        [SerializeField] private InputController inputController;
+        [SerializeField] private OrbsManager orbsManager;
+        [SerializeField] private NotesManager notesManager;
+        [SerializeField] private CounterController counterController;
+        [SerializeField] private HealthController healthController;
+        [SerializeField] private EndGameController endGameController;
+        [SerializeField] private GuyWalkingAnimation guyWalkingAnimation;
 
-        public string songToPlay;
-        #endregion ----Fields----
+        [SerializeField] private string songToPlay;
 
-        #region ----Methods----
         public void Init()
         {
             counterController.StartCounter(() =>
@@ -43,6 +40,19 @@ namespace EmotionQuest.GameplayModule
                 AudioJobOptions audioJobExtras = new AudioJobOptions(fadeIn: new AudioFadeInfo(true, 1),delay:0.7f);
                 AudioManager.PlayAudio(songToPlay, audioJobExtras);
             });
+        }
+
+        public void OnDestroy() =>
+            DesuscribeEvents();
+
+        private void DesuscribeEvents()
+        {
+            inputController.growHappiness -= orbsManager.GrowHapinness;
+            inputController.growSadness -= orbsManager.GrowSaddness;
+
+            orbsManager.scoreNote -= healthController.IncreaseResource;
+            orbsManager.failNote -= healthController.DecreaseResource;
+            healthController.playerDead -= Lose;
         }
 
         private void EndLevel()
@@ -87,21 +97,5 @@ namespace EmotionQuest.GameplayModule
             AudioManager.StopAudio(songToPlay);
             SceneFlowManager.instance.LoadScene(SceneManager.GetActiveScene().name);
         }
-
-        public void OnDestroy()
-        {
-            DesuscribeEvents();
-        }
-
-        private void DesuscribeEvents()
-        {
-            inputController.growHappiness -= orbsManager.GrowHapinness;
-            inputController.growSadness -= orbsManager.GrowSaddness;
-
-            orbsManager.scoreNote -= healthController.IncreaseResource;
-            orbsManager.failNote -= healthController.DecreaseResource;
-            healthController.playerDead -= Lose;
-        }
-        #endregion ----Methods----
     }
 }

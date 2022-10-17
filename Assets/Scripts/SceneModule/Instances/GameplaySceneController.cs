@@ -1,22 +1,16 @@
 using EmotionQuest.GameplayModule;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace EmotionQuest.SceneFlowModule
 {
     public class GameplaySceneController : SceneController
     {
-        #region ----Fields----
         [SerializeField] private GameplayController gameplayController;
-        #endregion ----Fields----
 
-        #region ----Methods----
-        public override void Init(Action<bool> _callback = null)
-        {
+        public override void Init(Action<bool> _callback = null) =>
             StartCoroutine(Wait(_callback));
-        }
 
         IEnumerator Wait(Action<bool> callback)
         {
@@ -24,6 +18,5 @@ namespace EmotionQuest.SceneFlowModule
             gameplayController.Init();
             callback?.Invoke(true);
         }
-        #endregion ----Methods----
     }
 }

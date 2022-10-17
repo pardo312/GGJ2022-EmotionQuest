@@ -6,23 +6,21 @@ namespace EmotionQuest.GameplayModule.OrbModule
 {
     public class OrbsManager : MonoBehaviour
     {
-        #region ----Fields----
         [SerializeField, Range(.1f, 1)] private float valueOfGrowth;
         [SerializeField, Range(.1f, 10)] private float scaleGrowthRatio;
-        //currentStat positive= red  & negative = blue
+
+        [SerializeField] private OrbController sadnessOrb;
+        [SerializeField] private OrbController happinessOrb;
+        [SerializeField] private Color sadnessOrbColor;
+        [SerializeField] private Color happinessOrbColor;
+        [SerializeField] private TMP_Text orb_label;
+
+        public event Action failNote;
+        public event Action scoreNote;
+
+        //currentStat positive = red  & negative = blue
         private int currentState = 0;
 
-        public Action failNote;
-        public Action scoreNote;
-
-        public OrbController sadnessOrb;
-        public OrbController happinessOrb;
-        public Color sadnessOrbColor;
-        public Color happinessOrbColor;
-        public TMP_Text orb_label;
-        #endregion ----Fields----
-
-        #region ----Methods----
         public void Init()
         {
             sadnessOrb.Init(TypeOfOrb.SAD);
@@ -52,9 +50,7 @@ namespace EmotionQuest.GameplayModule.OrbModule
 
             float scaleGrowthRatioToUse = scaleGrowthRatio;
             if (currentState > 0)
-            {
                 scaleGrowthRatioToUse *= -1;
-            }
             currentState--;
 
             sadnessOrb.ChangeColorAndScaleOfOrb(valueOfGrowth, scaleGrowthRatioToUse);
@@ -83,29 +79,14 @@ namespace EmotionQuest.GameplayModule.OrbModule
 
         public void CheckIfActive()
         {
-            if (currentState == 0)
-            {
-                sadnessOrb.isActive = true;
-                happinessOrb.isActive = true;
-            }
-            else if (currentState < 0)
-            {
-                sadnessOrb.isActive = true;
-                happinessOrb.isActive = false;
-            }
-            else if (currentState > 0)
-            {
-                happinessOrb.isActive = true;
-                sadnessOrb.isActive = false;
-            }
+            sadnessOrb.isActive = currentState <= 0;
+            happinessOrb.isActive = currentState >= 0;
         }
 
         public void CheckLabel()
         {
             if (currentState == 0)
-            {
                 orb_label.gameObject.SetActive(false);
-            }
             else
             {
                 orb_label.gameObject.SetActive(true);
@@ -115,6 +96,5 @@ namespace EmotionQuest.GameplayModule.OrbModule
                 orb_label.color = orbColor;
             }
         }
-        #endregion ----Methods----
     }
 }

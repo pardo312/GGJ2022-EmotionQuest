@@ -12,13 +12,9 @@ namespace EmotionQuest.GameplayModule
         {
             m_panelEndGame.SetActive(true);
             if (won)
-            {
                 m_panelWin.ShowPanel();
-            }
             else
-            {
                 m_panelLose.ShowPanel();
-            }
         }
     }
 }
